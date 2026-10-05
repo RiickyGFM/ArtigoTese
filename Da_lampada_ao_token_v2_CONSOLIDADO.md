@@ -1,14 +1,18 @@
 ---
 title: "Da lâmpada ao token"
 subtitle: "Degradação de qualidade e incentivo econômico em mercados de inteligência artificial"
-author: "[Nome do autor]"
-date: "Versão 2.0 - consolidada em 04/10/2026"
 lang: pt-BR
 ---
 
-**Tipo de texto:** ensaio analítico (revisão e posicionamento)
+::: {.autor custom-style="Author"}
+**Ricardo Junqueira Malhão**\ \ [![ORCID iD](assets/orcid_id_icon.png){.orcid width=10pt height=10pt}](https://orcid.org/0009-0002-9776-4906)
 
-**Versão:** 2.0, consolidada a partir de 7 arquivos. Os 39 fatos da versão 1.0 (congelada em 25/09/2026) foram mantidos sem alteração. Acréscimos da v2.0 estão listados no Registro de Fatos v2 e na Nota sobre o estado de verificação.
+[![ORCID iD](assets/orcid_id_icon.png){.orcid width=10pt height=10pt}](https://orcid.org/0009-0002-9776-4906)\ \ [https://orcid.org/0009-0002-9776-4906](https://orcid.org/0009-0002-9776-4906)
+:::
+
+**Classificação:** artigo científico de revisão (ensaio teórico); pesquisa bibliográfica e documental; abordagem qualitativa; objetivo exploratório.
+
+**Versão:** 2.1, de 05/10/2026, consolidada a partir de 7 arquivos. Os 39 fatos da versão 1.0 (congelada em 25/09/2026) foram mantidos sem alteração. Acréscimos da v2.0 estão listados no Registro de Fatos v2 e na Nota sobre o estado de verificação.
 
 # Resumo
 
@@ -315,7 +319,7 @@ Formulada assim, a tese não depende de atribuir má-fé a ninguém, não depend
 
 # 9. Agenda de teste empírico
 
-A tese proposta é testável, e essa é sua principal vantagem sobre a versão popular. É também o passo que transformaria este ensaio em artigo científico: executar o desenho abaixo e publicar os dados. Os instrumentos já existem de forma dispersa: conjuntos públicos de prompts e respostas (Chen, Zaharia e Zou), verificadores de revendedor (seção 5.1) e protocolos de auditoria de tokens ocultos (seção 5.5). Falta integrá-los numa série histórica contínua e independente. Um desenho mínimo incluiria os seguintes elementos.
+A tese proposta é testável, e essa é sua principal vantagem sobre a versão popular. É também o passo que acrescentaria a este trabalho dados empíricos próprios: executar o desenho abaixo e publicar os dados. Os instrumentos já existem de forma dispersa: conjuntos públicos de prompts e respostas (Chen, Zaharia e Zou), verificadores de revendedor (seção 5.1) e protocolos de auditoria de tokens ocultos (seção 5.5). Falta integrá-los numa série histórica contínua e independente. Um desenho mínimo incluiria os seguintes elementos.
 
 - Conjunto fixo de prompts, com respostas de referência estáveis, aplicado em intervalos regulares ao mesmo ponto de acesso comercial, por período não inferior a seis meses.
 - Registro, a cada execução, de acurácia, contagem de tokens de saída faturados, tokens visíveis, latência e identificação de versão declarada.

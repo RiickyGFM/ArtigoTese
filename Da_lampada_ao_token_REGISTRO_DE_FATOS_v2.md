@@ -80,9 +80,11 @@ Regra: qualquer rodada futura deve manter estes fatos. Só muda se aparecer font
 | 13 | 6.6 | Nova seção: confissão de IA não é evidência | Acréscimo |
 | 14 | 7.3 | Ônus da prova: debate x tribunal | Acréscimo |
 | 15 | 7.4 | Correções 4 (model drift) e 5 (números inflados) | Acréscimo |
-| 16 | 9 | Executar a agenda = virar artigo científico | Acréscimo |
+| 16 | 9 | Executar a agenda = acrescentar dados empíricos próprios | Acréscimo |
 | 17 | 10 | CDC art. 6º, III e VIII; STJ | Acréscimo com fonte |
 | 18 | Ap. A | Placar do debate 1 e resumo do debate 2 | Acréscimo |
+| 19 | Cabeçalho | Autor Ricardo Junqueira Malhão com iD ORCID (ícone oficial, formatos inline e completo) | Identificação (v2.1, 05/10/2026) |
+| 20 | Cabeçalho | Classificação: artigo científico de revisão (ensaio teórico); pesquisa bibliográfica e documental; abordagem qualitativa; objetivo exploratório | Identificação (v2.1, 05/10/2026) |
 
 ## Itens dos arquivos brutos NÃO usados
 
