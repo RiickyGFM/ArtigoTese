@@ -1,0 +1,26 @@
+@charset "UTF-8";
+@page { size: A4; margin: 2.5cm 2.2cm 2.5cm 2.2cm; }
+html { font-size: 11.5pt; }
+body { font-family: "Liberation Serif", "Times New Roman", serif; line-height: 1.5; color: #111; text-align: justify; hyphens: auto; margin: 0; }
+header#title-block-header { text-align: center; margin-bottom: 0.6em; }
+h1.title { font-size: 22pt; margin: 0 0 0.2em; line-height: 1.2; }
+p.subtitle { font-size: 13pt; font-style: italic; margin: 0 0 0.8em; text-align: center; }
+div.autor { text-align: center; margin-bottom: 1.2em; }
+div.autor p { margin: 0.15em 0; text-align: center; }
+img.orcid { width: 1em; height: 1em; vertical-align: -0.12em; }
+div.autor a { color: #1a5fb4; text-decoration: none; }
+h1 { font-size: 14pt; margin: 1.4em 0 0.5em; page-break-after: avoid; }
+h2 { font-size: 12.5pt; margin: 1.1em 0 0.4em; page-break-after: avoid; }
+h3 { font-size: 11.5pt; font-style: italic; margin: 1em 0 0.3em; page-break-after: avoid; }
+p { margin: 0 0 0.6em; orphans: 3; widows: 3; }
+blockquote { margin: 0.8em 2em; font-style: italic; }
+table { border-collapse: collapse; width: 100%; font-size: 9.5pt; text-align: left; margin: 0.8em 0; page-break-inside: auto; }
+th, td { border: 1px solid #999; padding: 3px 5px; vertical-align: top; }
+th { background: #eee; }
+tr { page-break-inside: avoid; }
+a { color: #1a5fb4; }
+ul, ol { margin: 0 0 0.6em; }
+/* Referencias alinhadas a esquerda (evita espacos grandes nas linhas com URL) */
+section#referências p { text-align: left; hyphens: manual; }
+/* Rotulos de grupo (paragrafo so com negrito) nao ficam sozinhos no pe da pagina */
+section#referências p:has(> strong:only-child) { break-after: avoid; page-break-after: avoid; margin-top: 0.9em; }

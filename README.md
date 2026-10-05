@@ -4,9 +4,12 @@
 
 | Arquivo | Papel |
 |---|---|
-| `Da_lampada_ao_token_v2_CONSOLIDADO.docx` | Ensaio v2.0 para abrir no Word / Google Docs |
+| `Da_lampada_ao_token_v2_CONSOLIDADO.pdf` | Versão final para leitura e envio (v2.1) |
+| `Da_lampada_ao_token_v2_CONSOLIDADO.docx` | Mesma versão para editar no Word / Google Docs |
 | `Da_lampada_ao_token_v2_CONSOLIDADO.md` | Mesmo texto, fonte editável (o .docx é gerado daqui) |
 | `Da_lampada_ao_token_REGISTRO_DE_FATOS_v2.md` | 49 fatos congelados + itens descartados |
+| `assets/orcid_id_icon.svg` / `.png` | Ícone iD oficial da ORCID (sem alteração) |
+| `ferramentas/gerar.py` | Gera .docx e .pdf a partir do .md |
 
 ## Arquivos de origem (não editar)
 
