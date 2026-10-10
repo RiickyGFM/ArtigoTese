@@ -1,5 +1,6 @@
 """Gera o .docx e o .pdf a partir do .md. Uso: python3 ferramentas/gerar.py
-Requisitos: pip install pypandoc_binary pypdf; node com playwright (Chromium)."""
+Requisitos: pip install pypandoc_binary pypdf; node com playwright (Chromium).
+O modelo do .docx (A4, Times 12, entrelinha 1,5) é gerado por ferramentas/criar_referencia.py."""
 import os, re, shutil, subprocess, tempfile, zipfile
 import pypandoc
 from pypdf import PdfReader, PdfWriter
@@ -11,13 +12,15 @@ AUTOR = "Ricardo Junqueira Malhão"
 ORCID_URL = "https://orcid.org/0009-0002-9776-4906"
 TITULO = "Da lâmpada ao token"
 ASSUNTO = "Degradação de qualidade e incentivo econômico em mercados de inteligência artificial"
+ENTRADA = "markdown+autolink_bare_uris"  # URLs das referências viram links clicáveis
 CHAVES = ("obsolescência programada; assimetria de informação; enshittification; quantização; "
           "padrões obscuros; auditoria capturada; bajulação; modelos de linguagem; custo de inferência")
 
 
 def gerar_docx():
     os.chdir(RAIZ)
-    pypandoc.convert_file(MD, "docx", outputfile=DOCX)
+    pypandoc.convert_file(MD, "docx", format=ENTRADA, outputfile=DOCX,
+                          extra_args=["--reference-doc=" + os.path.join(RAIZ, "ferramentas", "referencia_abnt.docx")])
     # Pos-processamento: link clicavel no proprio icone (a:hlinkClick), texto alternativo e autor nos metadados
     tmp = DOCX + ".tmp"
     with zipfile.ZipFile(DOCX) as zin, zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as zout:
@@ -49,7 +52,7 @@ def gerar_pdf():
         fonte = open(MD, encoding="utf-8").read().replace("assets/orcid_id_icon.png", "assets/orcid_id_icon.svg")
         open(os.path.join(d, "fonte.md"), "w", encoding="utf-8").write(fonte)
         os.chdir(d)
-        pypandoc.convert_file("fonte.md", "html5", outputfile="artigo.html", extra_args=[
+        pypandoc.convert_file("fonte.md", "html5", format=ENTRADA, outputfile="artigo.html", extra_args=[
             "--standalone", "--embed-resources", "--section-divs", "--css=estilo_pdf.css",
             "-M", "document-css=false", "-M", "pagetitle=" + TITULO])
         bruto = os.path.join(d, "bruto.pdf")
