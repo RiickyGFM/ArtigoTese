@@ -1,6 +1,6 @@
-# Da lâmpada ao token - Registro de fatos (versão 2.2, 10/10/2026)
+# Da lâmpada ao token - Registro de fatos (versão 2.3, 12/10/2026)
 
-Fatos 1 a 39 congelados em 25/09/2026 (v1.0). Fatos 40 a 49 acrescentados em 04/10/2026 (v2.0). Fatos 50 a 61 acrescentados em 10/10/2026 (v2.2), quando todas as fontes foram reabertas; nessa conferência os fatos 12, 13, 14, 15, 17 e 21 foram corrigidos ou precisados com fonte (ver tabela de ajustes v2.2).
+Fatos 1 a 39 congelados em 25/09/2026 (v1.0). Fatos 40 a 49 acrescentados em 04/10/2026 (v2.0). Fatos 50 a 61 acrescentados em 10/10/2026 (v2.2), quando todas as fontes foram reabertas; nessa conferência os fatos 12, 13, 14, 15, 17 e 21 foram corrigidos ou precisados com fonte (ver tabela de ajustes v2.2). Revisão final em 12/10/2026 (v2.3): ajustes de precisão, redação e formatação, sem fato novo (ver tabela de ajustes v2.3).
 
 Regra: qualquer rodada futura deve manter estes fatos. Só muda se aparecer fonte nova publicada depois de 25/09/2026, ou se alguém apontar erro com fonte. Frase pode mudar. Fato não.
 
@@ -118,6 +118,20 @@ Regra: qualquer rodada futura deve manter estes fatos. Só muda se aparecer font
 | 34 | Todo o texto | Citações autor-data (NBR 10520:2023); referências em lista única (NBR 6023:2018) com data de acesso | Formatação |
 | 35 | Após Palavras-chave | Título em inglês, Abstract e Keywords | Acréscimo |
 | 36 | Antes das Referências | Declarações: uso de IA, conflito de interesse, financiamento | Acréscimo |
+
+## Ajustes feitos na revisão final v2.3 (12/10/2026)
+
+| # | Onde | O que mudou | Tipo |
+|---|---|---|---|
+| 37 | 1 | "a qualidade caiu sem que percebessem" nas três ocasiões > problemas reconhecidos por escrito; falha da instrumentação interna registrada só nos relatórios de 2025 e 2026 | Generalização retirada (fatos 29 a 34) |
+| 38 | 4 (abertura) | "Os cinco casos foram confirmados" > quatro confirmados; o das impressoras aguarda julgamento | Generalização retirada (fato 16) |
+| 39 | 6.2 | "relatórios técnicos" > comunicados e relatórios técnicos (o episódio de 2023 foi comunicado, não relatório) | Precisão (fato 29) |
+| 40 | 6.2 | Terceira conclusão: falha da instrumentação interna atribuída só a 2025 e 2026 | Generalização retirada |
+| 41 | 6.5 | "Acordos foram firmados sem admissão de culpa" > vários acordos (vale para 4.2 e 4.5, não para todos os casos) | Generalização retirada (fatos 13, 14 e 22) |
+| 42 | 7.3 e 11 | "o que fechou o caso" e "em cada um dos precedentes" ajustados ao caso ainda não julgado | Precisão (fato 16) |
+| 43 | 3.3, 5.1, 6.2, 6.3.2, 6.6, 7, 7.2 | Redação: regência, concordância, vírgulas, remissão "item anterior" > seção 6.3.1, frases ambíguas reescritas | Revisão de texto |
+| 44 | Todo o texto | *et al.*, *In* e *[S. l.]* em itálico (NBR 6023:2018; NBR 10520:2023); estrangeirismos de conceito em itálico | Formatação |
+| 45 | Referências | Park et al. 2024: versão publicada (Findings of ACL 2024, p. 4998-5017, DOI); STJ: dados de publicação no DJe (12/06/2026) | Referência completada |
 
 ## Itens dos arquivos brutos NÃO usados
 

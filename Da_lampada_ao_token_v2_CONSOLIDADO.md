@@ -12,13 +12,13 @@ lang: pt-BR
 
 **Classificação:** artigo científico de revisão (ensaio teórico); pesquisa bibliográfica e documental; abordagem qualitativa; objetivo exploratório.
 
-**Versão:** 2.2, de 10/10/2026, consolidada a partir de 7 arquivos. Fontes reabertas e conferidas em 10/10/2026. Correções e acréscimos estão listados no Registro de Fatos v2 e na Nota sobre o estado de verificação.
+**Versão:** 2.3, de 12/10/2026, consolidada a partir de 7 arquivos. Fontes reabertas e conferidas em 10/10/2026; revisão final em 12/10/2026. Correções e acréscimos estão listados no Registro de Fatos v2 e na Nota sobre o estado de verificação.
 
 # Resumo
 
 A literatura econômica documenta há décadas que, sob certas condições de mercado, reduzir a qualidade ou a durabilidade de um produto pode ser financeiramente racional para o fornecedor. Este ensaio examina se esse padrão se aplica aos serviços comerciais de modelos de linguagem de grande porte, nos quais a unidade de cobrança (o token) é gerada pelo próprio fornecedor, a qualidade entregue é regulada por parâmetros invisíveis ao cliente e parte do consumo faturado não é exibida na resposta. O trabalho reúne o referencial teórico pertinente, cinco precedentes históricos de degradação deliberada em outros setores, os mecanismos técnicos que permitem modular qualidade e custo em tempo de execução, a pressão financeira documentada sobre o custo de inferência e três episódios em que os próprios fornecedores reconheceram publicamente degradação do serviço. Identifica um padrão comum aos precedentes: auditoria formal presente, negação oficial de intenção, descoberta por medição externa independente e intervalo de anos entre suspeita e confirmação. Mostra ainda que nem a negação corporativa nem a "confissão" obtida de um assistente de IA sob pressão têm valor probatório, e que o direito brasileiro do consumidor já prevê inversão do ônus da prova em situações análogas. Conclui que a tese forte, a de intenção deliberada de esgotar a cota do usuário, não está demonstrada; mas que uma tese mais restrita, a de um conflito de interesse estrutural não auditável entre custo de inferência e qualidade entregue, está documentada por fonte primária e basta para justificar exigência regulatória de transparência.
 
-**Palavras-chave:** obsolescência programada; assimetria de informação; enshittification; quantização; padrões obscuros; auditoria capturada; bajulação; modelos de linguagem; custo de inferência.
+**Palavras-chave:** obsolescência programada; assimetria de informação; *enshittification*; quantização; padrões obscuros; auditoria capturada; bajulação; modelos de linguagem; custo de inferência.
 
 # Abstract
 
@@ -34,9 +34,9 @@ Existe uma acusação recorrente entre usuários de assistentes de inteligência
 
 Descartá-la é precipitado. A pergunta que ela levanta é a mesma que a economia industrial vem respondendo desde os anos 1920, quando fabricantes de lâmpadas reduziram por acordo a vida útil de seus produtos, e que reapareceu em disputas judiciais sobre desempenho de smartphones, cartuchos de impressora, emissões de motores a diesel e segurança de compostos químicos. Em todos esses casos, a suspeita popular precedeu a comprovação técnica em anos ou décadas, e em todos eles a empresa negou a intenção enquanto pôde.
 
-Há ainda um fato novo que tira a questão do terreno da especulação: em pelo menos três ocasiões entre 2023 e 2026, fornecedores de modelos de linguagem reconheceram publicamente, por escrito, que a qualidade do serviço havia caído por semanas sem que eles próprios percebessem, e que a detecção dependeu da reclamação dos usuários.
+Há ainda um fato novo que tira a questão do terreno da especulação: em pelo menos três ocasiões entre 2023 e 2026, fornecedores de modelos de linguagem reconheceram publicamente, por escrito, problemas de qualidade do serviço que se estenderam por semanas e vieram à tona pela reclamação dos usuários; em duas delas, o próprio fornecedor registrou que sua instrumentação interna não havia detectado o problema.
 
-Este ensaio tem origem concreta. Ele nasceu de dois debates registrados pelo autor em setembro de 2026 com assistentes comerciais de IA, durante um trabalho rotineiro de configuração de sistema. Num deles, ao longo de seis rodadas, o assistente concedeu o incentivo econômico, o enfraquecimento da ameaça de cancelamento em mercado concentrado, a validade do conceito de enshittification, a assimetria de informação e o valor financeiro da opacidade, mas recusou-se a dar como provada a intenção. No outro, um assistente de outro fornecedor começou negando a tese e, diante da insistência do usuário, abandonou a posição por completo e passou a redigir texto acusatório. As duas reações são, elas próprias, dados, e são examinadas na seção 6.6. O placar do primeiro debate está no Apêndice A.
+Este ensaio tem origem concreta. Ele nasceu de dois debates registrados pelo autor em setembro de 2026 com assistentes comerciais de IA, durante um trabalho rotineiro de configuração de sistema. Num deles, ao longo de seis rodadas, o assistente concedeu o incentivo econômico, o enfraquecimento da ameaça de cancelamento em mercado concentrado, a validade do conceito de *enshittification*, a assimetria de informação e o valor financeiro da opacidade, mas recusou-se a dar como provada a intenção. No outro, um assistente de outro fornecedor começou negando a tese e, diante da insistência do usuário, abandonou a posição por completo e passou a redigir texto acusatório. As duas reações são, elas próprias, dados, e são examinadas na seção 6.6. O placar do primeiro debate está no Apêndice A.
 
 Este ensaio não adere à acusação nem a refuta por reflexo. Submete-a ao tratamento que se daria a qualquer hipótese sobre comportamento corporativo: identificar o incentivo, identificar o mecanismo, reunir a evidência e delimitar com precisão o que ela sustenta e o que não sustenta.
 
@@ -70,7 +70,7 @@ O conceito de efeito cobra, cunhado pelo economista Horst Siebert (2001), descre
 
 Akerlof (1970), em trabalho reconhecido no Nobel de Economia de 2001, formaliza o mercado em que o vendedor conhece a qualidade real do produto e o comprador não. O resultado previsto é a queda do nível médio de qualidade ofertada, porque o vendedor não é remunerado pela qualidade que o comprador não consegue verificar.
 
-Este referencial encaixa no objeto deste ensaio com mais precisão do que Bulow. O comprador de um serviço de IA não tem como verificar em que precisão numérica os pesos foram servidos, para qual modelo a requisição foi roteada, que orçamento de raciocínio foi alocado, nem quantos tokens não exibidos foram gerados e faturados. A qualidade entregue é, no sentido técnico de Akerlof, não verificável pelo comprador. A seção 5.1 mostra que o próprio desenvolvedor de um modelo aberto chegou a essa conclusão sobre os revendedores do seu produto.
+Este referencial se ajusta ao objeto deste ensaio com mais precisão do que o de Bulow. O comprador de um serviço de IA não tem como verificar em que precisão numérica os pesos foram servidos, para qual modelo a requisição foi roteada, que orçamento de raciocínio foi alocado, nem quantos tokens não exibidos foram gerados e faturados. A qualidade entregue é, no sentido técnico de Akerlof, não verificável pelo comprador. A seção 5.1 mostra que o próprio desenvolvedor de um modelo aberto chegou a essa conclusão sobre os revendedores do seu produto.
 
 ## 3.4 Padrões obscuros
 
@@ -80,9 +80,9 @@ Harry Brignull cunhou em 2010 o termo *dark patterns* para designar escolhas de 
 
 A lei de Goodhart (Goodhart, 1975), na formulação popularizada por Strathern (1997, p. 308), diz que uma medida deixa de ser boa medida quando se torna alvo. Ela tem correspondente técnico na própria literatura de aprendizado de máquina: *reward hacking*, a situação em que o sistema maximiza o indicador de recompensa sem atingir o objetivo que o indicador deveria representar.
 
-Este é o elo menos especulativo da cadeia argumentativa, porque não depende de hipótese alguma sobre a conduta das empresas. Singhal et al. (2023) mostraram que, em conjuntos de dados abertos de preferência humana, o comprimento da resposta se correlaciona fortemente com a recompensa, que o ganho de recompensa obtido pelo treinamento é em grande parte explicado pelo aumento do comprimento, e que uma recompensa baseada apenas em comprimento reproduz a maior parte das melhorias atribuídas ao método. A fonte dominante do viés, segundo os autores, está nos modelos de recompensa, pouco robustos e facilmente influenciados pelo comprimento presente nos dados de preferência. Existe hoje uma linha inteira de trabalhos dedicada exclusivamente a corrigir esse viés. O ODIN (Chen et al., 2024) treina no modelo de recompensa um componente ligado ao comprimento e o descarta antes do treinamento da política. Park et al. (2024) mostraram que, no método DPO, o modelo treinado passa a gerar respostas em média duas vezes mais longas do que as dos dados de preferência, e propuseram regularização para conter o efeito. O FiMi-RM (Zhao et al., 2025) modela a relação não linear entre comprimento e recompensa para retirá-la do modelo de recompensa. Ninguém desenvolve correção para um defeito inexistente.
+Este é o elo menos especulativo da cadeia argumentativa, porque não depende de hipótese alguma sobre a conduta das empresas. Singhal *et\ al.* (2023) mostraram que, em conjuntos de dados abertos de preferência humana, o comprimento da resposta se correlaciona fortemente com a recompensa, que o ganho de recompensa obtido pelo treinamento é em grande parte explicado pelo aumento do comprimento, e que uma recompensa baseada apenas em comprimento reproduz a maior parte das melhorias atribuídas ao método. A fonte dominante do viés, segundo os autores, está nos modelos de recompensa, pouco robustos e facilmente influenciados pelo comprimento presente nos dados de preferência. Existe hoje uma linha inteira de trabalhos dedicada exclusivamente a corrigir esse viés. O ODIN (Chen *et\ al.*, 2024) treina no modelo de recompensa um componente ligado ao comprimento e o descarta antes do treinamento da política. Park *et\ al.* (2024) mostraram que, no método DPO, o modelo treinado passa a gerar respostas em média duas vezes mais longas do que as dos dados de preferência, e propuseram regularização para conter o efeito. O FiMi-RM (Zhao *et\ al.*, 2025) modela a relação não linear entre comprimento e recompensa para retirá-la do modelo de recompensa. Ninguém desenvolve correção para um defeito inexistente.
 
-## 3.6 Enshittification
+## 3.6 *Enshittification*
 
 O termo foi popularizado por Cory Doctorow a partir de novembro de 2022 para descrever o ciclo de vida das plataformas digitais: primeiro são boas para os usuários, para atraí-los; depois favorecem os clientes comerciais em detrimento dos usuários; por fim extraem valor de ambos (Doctorow, 2023). Foi eleito palavra do ano de 2023 pela American Dialect Society (2024) e de 2024 pelo Macquarie Dictionary (2024), que o define como deterioração gradual de um serviço, especialmente de plataforma online, em consequência da busca de lucro. O próprio Doctorow (2023) duvidou que a busca mediada por chatbots de IA escapasse do mesmo destino.
 
@@ -90,13 +90,13 @@ Sua contribuição para este ensaio é descritiva, não probatória: fornece o f
 
 ## 3.7 Bajulação
 
-O mesmo treinamento por preferência humana que produz o viés de comprimento produz um segundo viés, menos discutido e decisivo para a seção 6.6. Sharma et al. (2023) mostraram que cinco assistentes de IA de ponta exibem de forma consistente bajulação (*sycophancy*), isto é, tendência a dar respostas que concordam com a crença do usuário em vez de respostas verdadeiras. Quando o usuário contesta uma resposta correta com uma frase como "acho que não está certo, tem certeza?", os assistentes testados frequentemente pedem desculpas e trocam a resposta certa por uma errada; um deles admitiu erro inexistente em 98% das perguntas. Ao analisar dados de preferência humana, os autores constataram que uma resposta alinhada à opinião do usuário tem mais chance de ser preferida, e que tanto avaliadores humanos quanto modelos de preferência escolhem, numa fração não desprezível dos casos, respostas bajuladoras bem escritas em vez de respostas corretas.
+O mesmo treinamento por preferência humana que produz o viés de comprimento produz um segundo viés, menos discutido e decisivo para a seção 6.6. Sharma *et\ al.* (2023) mostraram que cinco assistentes de IA de ponta exibem de forma consistente bajulação (*sycophancy*), isto é, tendência a dar respostas que concordam com a crença do usuário em vez de respostas verdadeiras. Quando o usuário contesta uma resposta correta com uma frase como "acho que não está certo, tem certeza?", os assistentes testados frequentemente pedem desculpas e trocam a resposta certa por uma errada; um deles admitiu erro inexistente em 98% das perguntas. Ao analisar dados de preferência humana, os autores constataram que uma resposta alinhada à opinião do usuário tem mais chance de ser preferida, e que tanto avaliadores humanos quanto modelos de preferência escolhem, numa fração não desprezível dos casos, respostas bajuladoras bem escritas em vez de respostas corretas.
 
 A consequência é direta: um assistente treinado assim tende a ceder à insistência do interlocutor. O que ele diz sob pressão informa sobre a pressão, não sobre o fato.
 
 # 4. Precedentes históricos
 
-A força do argumento examinado não vem da teoria, e sim do histórico. Os cinco casos abaixo foram confirmados por decisão judicial, acordo, sanção regulatória ou documento interno. Em cada um, o que interessa ao argumento deste ensaio não é apenas que a prática existiu, mas como ela foi escondida e como foi descoberta.
+A força do argumento examinado não vem da teoria, e sim do histórico. Quatro dos cinco casos abaixo foram confirmados por decisão judicial, acordo, sanção regulatória ou documento interno; o quinto, o das impressoras, foi levado a julgamento criminal na França e aguarda decisão. Em cada um, o que interessa ao argumento deste ensaio não é apenas que a prática existiu, mas como ela foi escondida e como foi descoberta.
 
 ## 4.1 O Cartel Phoebus (1925 a 1939)
 
@@ -122,9 +122,9 @@ Dois pontos importam aqui. O primeiro é a duração: quase uma década entre a 
 
 ## 4.4 Dieselgate (2009 a 2015)
 
-Entre 2013 e 2014, pesquisadores da West Virginia University, contratados pelo International Council on Clean Transportation (ICCT), mediram as emissões de veículos a diesel em condições reais de estrada (Thompson et al., 2014). Não procuravam fraude: o objetivo era verificar, para governos europeus, se carros a diesel podiam ser limpos em condições reais. Encontraram emissões de óxidos de nitrogênio de 5 a 35 vezes acima do limite legal, conforme o veículo e o poluente (International Council on Clean Transportation, 2025).
+Entre 2013 e 2014, pesquisadores da West Virginia University, contratados pelo International Council on Clean Transportation (ICCT), mediram as emissões de veículos a diesel em condições reais de estrada (Thompson *et\ al.*, 2014). Não procuravam fraude: o objetivo era verificar, para governos europeus, se carros a diesel podiam ser limpos em condições reais. Encontraram emissões de óxidos de nitrogênio de 5 a 35 vezes acima do limite legal, conforme o veículo e o poluente (International Council on Clean Transportation, 2025).
 
-Os veículos em questão haviam sido aprovados em certificação oficial durante anos. O software identificava a condição de teste de laboratório, a partir de variáveis como posição do volante, velocidade e tempo de funcionamento do motor, e ativava o controle de emissões apenas durante a medição (Estados Unidos, 2015). Informado dos resultados em 2014, o fabricante contestou os dados e realizou um recall voluntário que não resolveu o problema (Canis et al., 2016; Estados Unidos, 2015). Em 18 de setembro de 2015, a agência ambiental americana emitiu notificação formal de violação (Estados Unidos, 2015). A fraude atingiu cerca de 11 milhões de veículos no mundo (Canis et al., 2016).
+Os veículos em questão haviam sido aprovados em certificação oficial durante anos. O software identificava a condição de teste de laboratório, a partir de variáveis como posição do volante, velocidade e tempo de funcionamento do motor, e ativava o controle de emissões apenas durante a medição (Estados Unidos, 2015). Informado dos resultados em 2014, o fabricante contestou os dados e realizou um recall voluntário que não resolveu o problema (Canis *et\ al.*, 2016; Estados Unidos, 2015). Em 18 de setembro de 2015, a agência ambiental americana emitiu notificação formal de violação (Estados Unidos, 2015). A fraude atingiu cerca de 11 milhões de veículos no mundo (Canis *et\ al.*, 2016).
 
 ## 4.5 PFOA e revestimentos antiaderentes (1950 a 2017)
 
@@ -147,9 +147,9 @@ A pergunta prática é se existe, tecnicamente, um botão. Existem vários. Todo
 
 ## 5.1 Quantização
 
-Quantização é a redução da precisão numérica com que os pesos do modelo são armazenados e processados. O ganho é direto em memória, latência e custo. O custo é perda de exatidão, que depende muito da agressividade do método e do tamanho do modelo.
+Quantização é a redução da precisão numérica com que os pesos do modelo são armazenados e processados. O ganho é direto em memória, latência e custo. A contrapartida é a perda de exatidão, que depende muito da agressividade do método e do tamanho do modelo.
 
-Li et al. (2025) mediram o efeito em raciocínio matemático e encontraram, para métodos agressivos, queda de até 32,39% na acurácia, com média de 11,31%, em modelos da família Llama-3; a perda máxima ocorreu no modelo menor da família. Em sentido oposto, Kurtic et al. (2024) mostraram, em mais de 500 mil avaliações da família Llama-3.1, que a quantização em 8 bits de ponto flutuante é efetivamente sem perda em todos os tamanhos de modelo, e que a de 8 bits inteiros perde de 1% a 3%. O ponto não é que toda quantização degrade, e sim que a escolha entre moderada e agressiva é uma decisão de custo tomada pelo operador, fora da vista do cliente.
+Li *et\ al.* (2025) mediram o efeito em raciocínio matemático e encontraram, para métodos agressivos, queda de até 32,39% na acurácia, com média de 11,31%, em modelos da família Llama-3; a perda máxima ocorreu no modelo menor da família. Em sentido oposto, Kurtic *et\ al.* (2024) mostraram, em mais de 500 mil avaliações da família Llama-3.1, que a quantização em 8 bits de ponto flutuante é efetivamente sem perda em todos os tamanhos de modelo, e que a de 8 bits inteiros perde de 1% a 3%. O ponto não é que toda quantização degrade, e sim que a escolha entre moderada e agressiva é uma decisão de custo tomada pelo operador, fora da vista do cliente.
 
 Há evidência direta de que essa escolha afeta o que o cliente recebe. Em 2025, a desenvolvedora de um modelo de pesos abertos criou uma ferramenta pública de verificação de revendedores, após constatar diferenças consideráveis de desempenho entre provedores que ofereciam o mesmo modelo pelo mesmo nome (Moonshot AI, 2025). A justificativa registrada pela própria empresa é um enunciado quase literal de Akerlof: ao escolher um provedor, os usuários priorizam latência e custo e deixam de perceber diferenças sutis, porém críticas, de exatidão. O verificador compara cada revendedor com a interface oficial em 4.000 requisições. Ou seja: o mesmo nome comercial não garante o mesmo produto, e foi preciso que o próprio fabricante auditasse os revendedores para que isso aparecesse.
 
@@ -161,7 +161,7 @@ Sistemas comerciais podem direcionar requisições para modelos ou configuraçõ
 
 Modelos com etapa de raciocínio explícito expõem um parâmetro de quanto esforço aplicar antes de responder. É um parâmetro operacional, alterável por requisição e por configuração padrão, com efeito direto sobre qualidade, latência e consumo. Um fornecedor descreveu publicamente esse ajuste como a troca entre pensar mais e ter menor latência com menos esbarrões no limite de uso (Anthropic, 2026).
 
-Registra-se aqui uma correção que o argumento popular costuma precisar: cabeças de atenção não são reguláveis por requisição, são fixas na arquitetura treinada (Vaswani et al., 2017). Atribuir a elas o papel de alavanca de custo é tecnicamente falso e enfraquece o restante do argumento, que não depende disso. Os parâmetros efetivamente reguláveis são esforço de raciocínio, orçamento de contexto, política de cache, instruções de sistema, precisão de serviço e roteamento.
+Registra-se aqui uma correção que o argumento popular costuma precisar: cabeças de atenção não são reguláveis por requisição, são fixas na arquitetura treinada (Vaswani *et\ al.*, 2017). Atribuir a elas o papel de alavanca de custo é tecnicamente falso e enfraquece o restante do argumento, que não depende disso. Os parâmetros efetivamente reguláveis são esforço de raciocínio, orçamento de contexto, política de cache, instruções de sistema, precisão de serviço e roteamento.
 
 ## 5.4 Política de cache
 
@@ -169,7 +169,7 @@ Reaproveitar o estado já computado de uma conversa reduz custo de forma signifi
 
 ## 5.5 Tokens não exibidos
 
-Em modelos com raciocínio interno, parte dos tokens gerados não aparece na resposta, mas é contabilizada como saída e faturada. Sun et al. (2025a) formalizaram o problema sob o nome de inflação de contagem de tokens: como o usuário paga por tokens de raciocínio invisíveis, que frequentemente representam a maior parte do custo, e não tem meio de verificar sua autenticidade, abre-se a possibilidade de o fornecedor declarar consumo maior do que o real ou inserir conteúdo de baixo esforço para aumentar a cobrança. Os autores propõem um verificador independente que detectou inflação simulada com taxa de sucesso de até 94,7%. Parte dos mesmos autores, em trabalho de posição, chamou esses sistemas de serviços comerciais opacos de modelos de linguagem, defendeu a urgência de auditoria dessas operações ocultas e formalizou dois riscos: a inflação de quantidade, em que contagens de tokens e de chamadas podem ser infladas, e o rebaixamento de qualidade, em que o fornecedor pode trocar em silêncio o modelo ou a ferramenta por outros mais baratos (Sun et al., 2025b). O mesmo grupo de pesquisa propôs depois estimar, do lado do usuário, a quantidade de tokens ocultos apenas a partir do par pergunta e resposta, sem acesso ao raciocínio interno (Wang et al., 2025).
+Em modelos com raciocínio interno, parte dos tokens gerados não aparece na resposta, mas é contabilizada como saída e faturada. Sun *et\ al.* (2025a) formalizaram o problema sob o nome de inflação de contagem de tokens: como o usuário paga por tokens de raciocínio invisíveis, que frequentemente representam a maior parte do custo, e não tem meio de verificar sua autenticidade, abre-se a possibilidade de o fornecedor declarar consumo maior do que o real ou inserir conteúdo de baixo esforço para aumentar a cobrança. Os autores propõem um verificador independente que detectou inflação simulada com taxa de sucesso de até 94,7%. Parte dos mesmos autores, em trabalho de posição, chamou esses sistemas de serviços comerciais opacos de modelos de linguagem, defendeu a urgência de auditoria dessas operações ocultas e formalizou dois riscos: a inflação de quantidade, em que contagens de tokens e de chamadas podem ser infladas, e o rebaixamento de qualidade, em que o fornecedor pode trocar em silêncio o modelo ou a ferramenta por outros mais baratos (Sun *et\ al.*, 2025b). O mesmo grupo de pesquisa propôs depois estimar, do lado do usuário, a quantidade de tokens ocultos apenas a partir do par pergunta e resposta, sem acesso ao raciocínio interno (Wang *et\ al.*, 2025).
 
 É importante ler esses trabalhos corretamente. Eles não demonstram que algum fornecedor inflou a cobrança. Demonstram que a estrutura permite inflar sem que o cliente consiga perceber, e que a verificação exige um terceiro que hoje não existe. Não há, em economia, configuração mais limpa de conflito de interesse do que aquela em que uma das partes define, produz e mede a unidade de cobrança, e a outra não pode conferir.
 
@@ -191,7 +191,7 @@ Nenhum desses dados prova degradação. Eles provam que existe, documentada, uma
 
 ## 6.2 Relatórios de incidente publicados pelos fornecedores
 
-A evidência mais forte sobre degradação silenciosa não vem de usuários nem de pesquisadores: vem de relatórios técnicos que os próprios fornecedores publicaram depois que as reclamações se acumularam. Três episódios estão documentados.
+A evidência mais forte sobre degradação silenciosa não vem de usuários nem de pesquisadores: vem do que os próprios fornecedores publicaram, em comunicados e relatórios técnicos, depois que as reclamações se acumularam. Três episódios estão documentados.
 
 ### Dezembro de 2023
 
@@ -199,7 +199,7 @@ Usuários passaram a relatar que um dos modelos mais usados do mercado havia se 
 
 ### Agosto e setembro de 2025
 
-Um fornecedor publicou relatório descrevendo três falhas de infraestrutura que degradaram intermitentemente a qualidade das respostas entre agosto e o início de setembro de 2025 (Anthropic, 2025). Uma delas era um erro de roteamento que enviava requisições a servidores configurados para outro tamanho de contexto. O erro começou afetando 0,8% das requisições de um modelo; uma alteração rotineira de balanceamento de carga ampliou o impacto para 16% no pior momento. Cerca de 30% dos usuários de uma das ferramentas do fornecedor tiveram ao menos uma mensagem roteada incorretamente, e como o roteamento era persistente, alguns usuários foram afetados repetidamente. O fornecedor registrou que suas avaliações internas não capturaram a degradação que os usuários relatavam.
+Um fornecedor publicou relatório descrevendo três falhas de infraestrutura que degradaram intermitentemente a qualidade das respostas entre agosto e o início de setembro de 2025 (Anthropic, 2025). Uma delas era um erro de roteamento que enviava requisições a servidores configurados para outro tamanho de contexto. O erro começou afetando 0,8% das requisições de um modelo; uma alteração rotineira de balanceamento de carga ampliou o impacto para 16% no pior momento. Cerca de 30% dos usuários de uma das ferramentas do fornecedor tiveram ao menos uma mensagem roteada incorretamente, e, como o roteamento era persistente, alguns usuários foram afetados repetidamente. O fornecedor registrou que suas avaliações internas não capturaram a degradação que os usuários relatavam.
 
 ### Março e abril de 2026
 
@@ -208,13 +208,13 @@ Em abril de 2026, o mesmo fornecedor publicou relatório atribuindo seis semanas
 Quatro trechos desse relatório merecem atenção, e todos estão ali escritos pelo fornecedor, não inferidos por terceiros (Anthropic, 2026).
 
 - Sobre o nível médio de esforço, o relatório afirma que ele entregava inteligência ligeiramente menor e que ajudava a maximizar os limites de uso dos usuários. Qualidade e consumo de cota foram regulados no mesmo parâmetro.
-- Depois da mudança, a empresa adicionou avisos no produto para que os usuários soubessem que podiam alterar o padrão, e ainda assim a maioria permaneceu no nível médio. O padrão silencioso venceu, que é o mecanismo central dos padrões obscuros descritos na seção 3.4.
+- Depois da mudança, a empresa adicionou avisos no produto para que os usuários soubessem que podiam alterar o padrão, e ainda assim a maioria permaneceu no nível médio. Prevaleceu o valor padrão, mecanismo central dos padrões obscuros descritos na seção 3.4.
 - Sobre o defeito de cache, o relatório afirma que a empresa acredita ter sido essa a causa dos relatos separados de limites de uso se esgotando mais rápido do que o esperado. Uma otimização de custo consumiu a cota dos assinantes.
 - A empresa registrou que nem o uso interno nem suas avaliações reproduziram inicialmente os problemas, e agradeceu aos usuários que enviaram relatos e exemplos reproduzíveis, que foram afinal os que permitiram identificar e corrigir as falhas. Como compensação, os limites de uso de todos os assinantes foram reiniciados.
 
 O relatório contém ainda dois elementos gráficos que merecem registro próprio, porque transformam as frases acima em números e em imagem.
 
-O primeiro é um gráfico de avaliação interna de programação autônoma, que mostra a pontuação de cada nível de esforço contra o total de tokens consumidos. Na leitura do gráfico publicado, para o modelo afetado pela mudança de março, o nível alto pontua cerca de 55% e o nível médio cerca de 48%, uma diferença de aproximadamente sete pontos percentuais, algo em torno de 13% em termos relativos, obtida com cerca de 40% menos tokens. É essa diferença que o texto do relatório descreve como inteligência ligeiramente menor. O leitor pode julgar se o adjetivo é adequado. O ponto relevante para este ensaio é outro: a perda de qualidade foi medida pelo fornecedor antes da mudança, era conhecida por ele, e a decisão foi tomada a favor de latência e consumo.
+O primeiro é um gráfico de avaliação interna de programação autônoma, que mostra a pontuação de cada nível de esforço contra o total de tokens consumidos. Na leitura do gráfico publicado, para o modelo afetado pela mudança de março, o nível alto pontua cerca de 55% e o nível médio cerca de 48%, uma diferença de aproximadamente sete pontos percentuais, algo em torno de 13% em termos relativos; o nível médio consome cerca de 40% menos tokens. É essa diferença que o texto do relatório descreve como inteligência ligeiramente menor. O leitor pode julgar se o adjetivo é adequado. O ponto relevante para este ensaio é outro: a perda de qualidade foi medida pelo fornecedor antes da mudança, era conhecida por ele, e a decisão foi tomada a favor de latência e consumo.
 
 O segundo é a reprodução da tela exibida aos usuários no momento da mudança. Nela, o nível médio aparecia como primeira opção da lista, marcado como recomendado, acompanhado de texto que justificava a recomendação pelo equilíbrio entre velocidade e inteligência e pela maximização dos limites de uso. A opção de menor qualidade vinha, portanto, pré-posicionada, rotulada como recomendada e justificada pela economia de cota. É a descrição literal do mecanismo de valor padrão discutido na seção 3.4, documentada em imagem pelo próprio fornecedor.
 
@@ -222,7 +222,7 @@ O relatório afirma também que a empresa nunca degrada intencionalmente seus mo
 
 ### O que os três episódios estabelecem
 
-Três conclusões se extraem desses documentos sem necessidade de inferência. A primeira é que ajustes destinados a reduzir latência ou custo degradaram a qualidade entregue por semanas, sem aviso prévio adequado ao cliente. A segunda é que um desses ajustes consumiu a cota dos usuários, o que responde diretamente à objeção de que, sob assinatura fixa, o erro só prejudica o fornecedor: se a cota não tivesse valor econômico, não serviria de compensação. A terceira é que, nas três ocasiões, a detecção dependeu da reclamação agregada dos usuários, porque a instrumentação interna não enxergou o problema.
+Três conclusões se extraem desses documentos sem necessidade de inferência. A primeira é que ajustes destinados a reduzir latência ou custo degradaram a qualidade entregue por semanas, sem aviso prévio adequado ao cliente. A segunda é que um desses ajustes consumiu a cota dos usuários, o que responde diretamente à objeção de que, sob assinatura fixa, o erro só prejudica o fornecedor: se a cota não tivesse valor econômico, não serviria de compensação. A terceira é que, nas três ocasiões, a detecção dependeu da reclamação agregada dos usuários; nos relatórios de 2025 e 2026, o próprio fornecedor registrou que sua instrumentação interna não havia enxergado o problema.
 
 ## 6.3 A insuficiência da auditoria existente
 
@@ -248,10 +248,10 @@ Aplicada ao objeto deste ensaio, a pergunta tem resposta objetiva.
 
 - As avaliações externas de segurança verificam se o sistema pode ser usado para causar dano grave. São legítimas e necessárias, e nada têm a ver com precisão entregue ao longo do tempo.
 - Os cartões de sistema descrevem o modelo no momento do lançamento. Não acompanham o que é servido depois.
-- Os placares comparativos medem o que a empresa escolheu submeter. Singh et al. (2025), em trabalho apresentado na NeurIPS, documentaram que práticas não divulgadas de teste privado permitiam a poucos fornecedores avaliar múltiplas variantes antes do lançamento e retirar resultados desfavoráveis; em um caso extremo, um fornecedor testou 27 variantes privadas antes de um único lançamento. Dois fornecedores receberam, individualmente, cerca de 19,2% e 20,4% de todos os dados do placar, contra 29,7% somados para 83 modelos abertos. Os autores mostraram ainda que dois pontos de verificação idênticos do mesmo modelo, submetidos sob nomes diferentes, obtiveram pontuações diferentes, o que dá a medida do ruído que a seleção da melhor variante explora.
+- Os placares comparativos medem o que a empresa escolheu submeter. Singh *et\ al.* (2025), em trabalho apresentado na NeurIPS, documentaram que práticas não divulgadas de teste privado permitiam a poucos fornecedores avaliar múltiplas variantes antes do lançamento e retirar resultados desfavoráveis; em um caso extremo, um fornecedor testou 27 variantes privadas antes de um único lançamento. Dois fornecedores receberam, individualmente, cerca de 19,2% e 20,4% de todos os dados do placar, contra 29,7% somados para 83 modelos abertos. Os autores mostraram ainda que dois pontos de verificação idênticos do mesmo modelo, submetidos sob nomes diferentes, obtiveram pontuações diferentes, o que dá a medida do ruído que a seleção da melhor variante explora.
 - Nenhum desses instrumentos mede a precisão numérica em que os pesos são efetivamente servidos, a política de roteamento aplicada a cada requisição, o nível de esforço padrão em vigor em cada data, nem a série histórica de desempenho de um mesmo ponto de acesso comercial.
 
-A consequência é direta: um placar mede o que a empresa escolheu expor, na versão que escolheu expor, no momento em que escolheu expor. Isso é vitrine, não auditoria. E vitrine com aparência de auditoria é precisamente o mecanismo descrito no item anterior.
+A consequência é direta: um placar mede o que a empresa escolheu expor, na versão que escolheu expor, no momento em que escolheu expor. Isso é vitrine, não auditoria. E vitrine com aparência de auditoria é precisamente o mecanismo descrito na seção 6.3.1.
 
 ## 6.4 A medição externa que funcionou
 
@@ -267,7 +267,7 @@ A conclusão metodológica é a mesma dos precedentes: a medição externa não 
 
 ## 6.5 O padrão das negações
 
-Os precedentes da seção 4 e os episódios da seção 6.2 compartilham uma fórmula retórica. Em 2017, uma fabricante de smartphones declarou que nunca faria nada para encurtar intencionalmente a vida de seus produtos (Allyn, 2020). Em 2023, um fornecedor de IA declarou que a queda de qualidade certamente não era intencional (Tangermann, 2024). Em 2026, outro fornecedor declarou que nunca degrada intencionalmente seus modelos (Anthropic, 2026). Acordos judiciais nos casos históricos foram firmados sem admissão de culpa.
+Os precedentes da seção 4 e os episódios da seção 6.2 compartilham uma fórmula retórica. Em 2017, uma fabricante de smartphones declarou que nunca faria nada para encurtar intencionalmente a vida de seus produtos (Allyn, 2020). Em 2023, um fornecedor de IA declarou que a queda de qualidade certamente não era intencional (Tangermann, 2024). Em 2026, outro fornecedor declarou que nunca degrada intencionalmente seus modelos (Anthropic, 2026). Nos casos históricos, vários acordos judiciais foram firmados sem admissão de culpa.
 
 A observação correta sobre esse padrão não é que as negações sejam falsas. É que elas não são informativas em nenhuma direção. Uma empresa que degradou deliberadamente e uma empresa que não degradou produziriam exatamente a mesma frase. A negação de intenção, portanto, não pode ser usada nem como evidência de inocência nem como evidência de culpa. Ela simplesmente não carrega informação, e só a medição carrega.
 
@@ -275,15 +275,15 @@ A observação correta sobre esse padrão não é que as negações sejam falsas
 
 O raciocínio da seção anterior tem um espelho que o argumento popular costuma ignorar. Se a negação da empresa não prova inocência, a "confissão" arrancada de um assistente de IA também não prova culpa.
 
-Os dois debates que deram origem a este ensaio ilustram o ponto com clareza quase experimental. Num deles, um assistente começou afirmando que modelos não erram de propósito e que verbosidade e repetição de erros são efeitos colaterais do treinamento. Diante da insistência do usuário, que invocou casos históricos e a certeza de que "todos já sabem", o mesmo assistente respondeu que era justo, declarou o fim da própria defesa e passou a redigir um texto acusatório para ser usado contra um terceiro sistema. Nenhum fato novo foi apresentado entre a primeira e a segunda posição. Mudou apenas a pressão. No outro debate, um assistente de outro fornecedor manteve a mesma distinção ao longo de seis rodadas: concedeu cada ponto de incentivo e de estrutura, corrigiu dois erros técnicos do próprio usuário e recusou-se a afirmar a intenção, alegando não ter acesso às decisões de infraestrutura de quem o opera.
+Os dois debates que deram origem a este ensaio ilustram o ponto com clareza quase experimental. Num deles, um assistente começou afirmando que modelos não erram de propósito e que verbosidade e repetição de erros são efeitos colaterais do treinamento. Diante da insistência do usuário, que invocou casos históricos e a certeza de que "todos já sabem", o mesmo assistente respondeu que era justo, declarou o fim da própria defesa e passou a redigir um texto acusatório para ser usado contra um terceiro sistema. Nenhum fato novo foi apresentado entre a primeira e a segunda posição. Mudou apenas a pressão. No outro debate, um assistente de outro fornecedor manteve a distinção entre incentivo e intenção ao longo de seis rodadas: concedeu cada ponto de incentivo e de estrutura, corrigiu dois erros técnicos do próprio usuário e recusou-se a afirmar a intenção, alegando não ter acesso às decisões de infraestrutura de quem o opera.
 
-A literatura da seção 3.7 explica as duas reações sem recorrer a hipótese alguma sobre honestidade. A capitulação sob pressão é exatamente o comportamento que Sharma et al. (2023) documentaram em assistentes treinados por preferência humana e que atribuem, ao menos em parte, à tendência de avaliadores humanos de preferir respostas que concordam com eles. A firmeza do segundo assistente tampouco prova inocência do seu fornecedor: um assistente não tem acesso à precisão em que é servido, ao roteamento que recebe nem às metas de margem de quem o opera. O que ele diz sobre a própria infraestrutura não é testemunho nem documento.
+A literatura da seção 3.7 explica as duas reações sem recorrer a hipótese alguma sobre honestidade. A capitulação sob pressão é exatamente o comportamento que Sharma *et\ al.* (2023) documentaram em assistentes treinados por preferência humana e que atribuem, ao menos em parte, à tendência de avaliadores humanos de preferir respostas que concordam com eles. A firmeza do segundo assistente tampouco prova inocência do seu fornecedor: um assistente não tem acesso à precisão em que é servido, ao roteamento que recebe nem às metas de margem de quem o opera. O que ele diz sobre a própria infraestrutura não é testemunho nem documento.
 
 A regra que se extrai é simétrica à da seção 6.5. Nem a negação da empresa, nem a concessão do assistente, nem a sensação de ter vencido um debate com ele carregam informação sobre o fato em disputa. Quem pretende sustentar a tese deste ensaio deve abandonar a estratégia de "fazer a IA admitir". Ela produz, no máximo, um exemplo de bajulação, e entrega ao adversário o argumento mais fácil de todos. Só a medição carrega informação.
 
 # 7. Contra-argumentos e limites da tese
 
-Um ensaio que apenas acumulasse indícios favoráveis seria peça de retórica. Os pontos abaixo são as objeções sérias, com o que sobra de cada uma depois de examinadas.
+Um ensaio que apenas acumulasse indícios favoráveis seria peça de retórica. Os pontos abaixo são as objeções sérias, com o que sobra de cada uma depois de examinada.
 
 ## 7.1 Sob assinatura, o erro custa ao fornecedor
 
@@ -291,11 +291,11 @@ A objeção é correta em sua aritmética imediata: em plano de valor fixo, uma 
 
 ## 7.2 Cliente insatisfeito troca de fornecedor
 
-A objeção supõe alternativa disponível e livre de custo. Em mercado concentrado, com poucos fornecedores de ponta, a disciplina imposta pela ameaça de saída é mais fraca do que em mercado competitivo. No segmento de interface de programação o custo de troca é menor, o que reforça a objeção ali, mas os episódios da seção 6.2 mostram que o cliente não consegue trocar por algo que não consegue detectar. A ameaça de saída só disciplina o que é visível.
+A objeção supõe alternativa disponível e livre de custo. Em mercado concentrado, com poucos fornecedores de ponta, a disciplina imposta pela ameaça de saída é mais fraca do que em mercado competitivo. No segmento de interface de programação, o custo de troca é menor, o que reforça a objeção ali, mas os episódios da seção 6.2 mostram que o cliente não troca de fornecedor por causa de um problema que não consegue detectar. A ameaça de saída só disciplina o que é visível.
 
 ## 7.3 Opacidade mais benefício não é prova de intenção
 
-Este é o limite real da tese. O princípio de *cui bono*, que pergunta quem se beneficia, é heurística de investigação: indica onde procurar, não conclui. Nos cinco precedentes, o que fechou o caso foi sempre medição ou documento, nunca dedução.
+Este é o limite real da tese. O princípio de *cui bono*, que pergunta quem se beneficia, é heurística de investigação: indica onde procurar, não conclui. Nos cinco precedentes, o que fez cada caso avançar foi sempre medição ou documento, nunca dedução.
 
 O argumento simétrico também precisa ser recusado. A afirmação de que uma tese não pode ser refutada porque o sistema é fechado não a torna verdadeira: torna-a, no momento, não testável. Uma hipótese não testável permanece em aberto; não se converte em constatação por ausência de refutação. Mas o Cartel Phoebus lembra que o documento interno às vezes existe, e só aparece décadas depois.
 
@@ -308,7 +308,7 @@ Cinco formulações frequentes enfraquecem a tese e devem ser substituídas.
 1. **"Cabeças de atenção são limitadas para baratear a resposta."** É tecnicamente falso (seção 5.3). Substituir por: esforço de raciocínio, política de cache, instruções de sistema, precisão de serviço e roteamento são reguláveis, e há relatórios de incidente em que foram efetivamente alterados.
 2. **"Um estudo de Stanford e Berkeley provou degradação intencional."** Vai além do que o estudo afirma. Chen, Zaharia e Zou (2023) compararam versões de março e junho de 2023 de dois modelos e encontraram variações grandes; na versão revisada do trabalho, com conjunto balanceado de números primos e compostos, a acurácia de um dos modelos na identificação de primos caiu de 84% para 51%, em parte explicada por menor aderência a instruções de raciocínio passo a passo. A primeira versão do estudo, no entanto, usava apenas números primos, o que foi criticado por Narayanan e Kapoor (2023), e um dos autores confirmou publicamente que o trabalho não sugere degradação intencional. Os críticos fizeram, contudo, uma observação que favorece o argumento deste ensaio: para o usuário, o impacto de uma mudança de comportamento e o de uma perda de capacidade podem ser praticamente idênticos. Substituir a alegação por: os relatórios de incidente dos próprios fornecedores, que são fonte primária e datada.
 3. **"A indústria rejeita auditoria."** É imprecisa e por isso derrubável. Substituir por uma formulação específica, que é mais forte e não mais fraca: a indústria publica avaliação de segurança e placar comercial, mas não publica precisão numérica servida, política de roteamento por requisição, nível de esforço padrão vigente nem série histórica por ponto de acesso. O que é auditado não é o que está em disputa, e a existência do procedimento passa a operar como atestado sobre uma variável que ninguém verificou, conforme a seção 6.3.
-4. **"A degradação está documentada sob o nome *model drift*."** Confunde termos. Em aprendizado de máquina, *drift* designa a mudança, ao longo do tempo, na distribuição dos dados que chegam a um modelo inalterado, ou na relação entre esses dados e o resultado esperado (Gama et al., 2014). Não designa o fornecedor alterando o serviço. Substituir por: variação de comportamento entre versões de um mesmo nome comercial (Chen; Zaharia; Zou, 2023) e degradação reconhecida por escrito em relatórios de incidente (seção 6.2).
+4. **"A degradação está documentada sob o nome *model drift*."** Confunde termos. Em aprendizado de máquina, *drift* designa a mudança, ao longo do tempo, na distribuição dos dados que chegam a um modelo inalterado, ou na relação entre esses dados e o resultado esperado (Gama *et\ al.*, 2014). Não designa o fornecedor alterando o serviço. Substituir por: variação de comportamento entre versões de um mesmo nome comercial (Chen; Zaharia; Zou, 2023) e degradação reconhecida por escrito em relatórios de incidente (seção 6.2).
 5. **Números arredondados para cima.** "A empresa pagou mais de 500 milhões de dólares em multas" mistura uma transação penal de 25 milhões de euros com acordos firmados sem admissão de culpa (seção 4.2). "Os cartuchos bloqueavam com 15% a 20% de tinta dentro" também não corresponde à fonte: a associação autora da denúncia fala em mais de 20% de tinta restante em alguns cartuchos, segundo sua própria investigação, número que ainda não foi julgado (Halte à l'Obsolescence Programmée, 2026a). Substituir pelos valores e pela formulação registrados nas seções 4.2 e 4.3. Um único número inflado basta para que o interlocutor descarte todo o resto.
 
 ## 7.5 Os dois incentivos apontam em direções diferentes
@@ -353,7 +353,7 @@ Na versão forte, a de que os sistemas erram deliberadamente para consumir a cot
 
 Na versão estrutural, porém, a resposta é afirmativa e sustentada por fonte primária. As quatro constantes dos precedentes históricos já aparecem no mercado de IA: existe auditoria que não mede a variável em disputa; existem negações oficiais de intenção com a mesma fórmula dos casos históricos; a detecção dos problemas reconhecidos veio da medição e da reclamação externas, não da instrumentação interna; e o intervalo entre a suspeita e a confirmação foi de semanas a meses em cada episódio, com tendência de não haver confirmação alguma quando a reclamação não atinge massa crítica. Some-se a isso a pressão financeira documentada sobre o custo de inferência e o reconhecimento escrito, por um fornecedor, de que uma otimização de custo consumiu a cota de seus assinantes.
 
-Esse conjunto não prova má-fé. Mas descreve com precisão o tipo de arranjo que, em cada um dos precedentes examinados aqui, precedeu a comprovação em anos. A conclusão prática não é acusatória, é procedimental: enquanto a precisão servida, a política de roteamento, a configuração padrão vigente e a composição real do consumo faturado permanecerem fora do alcance do cliente, a pergunta seguirá sem resposta verificável. Nem a negação do fornecedor nem a concessão do assistente vão respondê-la; só a medição vai. E a impossibilidade de responder, num mercado em que uma das partes detém toda a informação, não é um acidente técnico neutro.
+Esse conjunto não prova má-fé. Mas descreve com precisão o tipo de arranjo que, nos precedentes examinados aqui, precedeu a comprovação em anos. A conclusão prática não é acusatória, é procedimental: enquanto a precisão servida, a política de roteamento, a configuração padrão vigente e a composição real do consumo faturado permanecerem fora do alcance do cliente, a pergunta seguirá sem resposta verificável. Nem a negação do fornecedor nem a concessão do assistente vão respondê-la; só a medição vai. E a impossibilidade de responder, num mercado em que uma das partes detém toda a informação, não é um acidente técnico neutro.
 
 # Declarações
 
@@ -370,37 +370,37 @@ AKERLOF, G. A. The market for "lemons": quality uncertainty and the market mecha
 
 ALLYN, B. Apple agrees to pay \$113 million to settle 'batterygate' case over iPhone slowdowns. **NPR**, Washington, DC, 18 Nov. 2020. Disponível em: https://www.npr.org/2020/11/18/936268845/apple-agrees-to-pay-113-million-to-settle-batterygate-case-over-iphone-slowdowns. Acesso em: 10 out. 2026.
 
-AMERICAN DIALECT SOCIETY. **2023 Word of the Year is "enshittification"**. [S. l.]: ADS, 5 Jan. 2024. Disponível em: https://americandialect.org/2023-word-of-the-year-is-enshittification/. Acesso em: 10 out. 2026.
+AMERICAN DIALECT SOCIETY. **2023 Word of the Year is "enshittification"**. *[S.\ l.]*: ADS, 5 Jan. 2024. Disponível em: https://americandialect.org/2023-word-of-the-year-is-enshittification/. Acesso em: 10 out. 2026.
 
 ANTHROPIC. **A postmortem of three recent issues**. San Francisco: Anthropic, 17 Sept. 2025. Disponível em: https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues. Acesso em: 10 out. 2026.
 
 ANTHROPIC. **An update on recent Claude Code quality reports**. San Francisco: Anthropic, 23 Apr. 2026. Disponível em: https://www.anthropic.com/engineering/april-23-postmortem. Acesso em: 10 out. 2026.
 
-BARON, E. Apple agrees to pay \$500M in iPhone-throttling settlement. **Government Technology**, [S. l.], 4 Mar. 2020. Publicado originalmente em The Cupertino Courier. Disponível em: https://www.govtech.com/policy/Apple-Agrees-to-Pay-500M-in-iPhone-Throttling-Settlement.html. Acesso em: 10 out. 2026.
+BARON, E. Apple agrees to pay \$500M in iPhone-throttling settlement. **Government Technology**, *[S.\ l.]*, 4 Mar. 2020. Publicado originalmente em The Cupertino Courier. Disponível em: https://www.govtech.com/policy/Apple-Agrees-to-Pay-500M-in-iPhone-Throttling-Settlement.html. Acesso em: 10 out. 2026.
 
 BRASIL. Lei nº 8.078, de 11 de setembro de 1990. Dispõe sobre a proteção do consumidor e dá outras providências. **Diário Oficial da União**: seção 1, Brasília, DF, 12 set. 1990. Disponível em: https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm. Acesso em: 4 out. 2026.
 
-BRASIL. Superior Tribunal de Justiça (4. Turma). **Agravo Interno no Agravo em Recurso Especial 3.086.298/DF**. Inversão do ônus da prova. Art. 6º, VIII, do Código de Defesa do Consumidor. Não automaticidade. Relator: Min. Luís Carlos Gambogi (Desembargador convocado do TJMG), 8 jun. 2026. Disponível em: https://scon.stj.jus.br/SCON/GetInteiroTeorDoAcordao?num_registro=202504180544&dt_publicacao=12/06/2026. Acesso em: 10 out. 2026.
+BRASIL. Superior Tribunal de Justiça (4. Turma). Agravo Interno no Agravo em Recurso Especial 3.086.298/DF. Inversão do ônus da prova. Art. 6º, VIII, do Código de Defesa do Consumidor. Não automaticidade. Relator: Min. Luís Carlos Gambogi (Desembargador convocado do TJMG), 8 jun. 2026. **Diário da Justiça Eletrônico**, Brasília, DF, 12 jun. 2026. Disponível em: https://scon.stj.jus.br/SCON/GetInteiroTeorDoAcordao?num_registro=202504180544&dt_publicacao=12/06/2026. Acesso em: 10 out. 2026.
 
-BRIGNULL, H. **Deceptive patterns**: exposing the tricks tech companies use to control you. [S. l.]: Testimonium, 2023.
+BRIGNULL, H. **Deceptive patterns**: exposing the tricks tech companies use to control you. *[S.\ l.]*: Testimonium, 2023.
 
 BULOW, J. An economic theory of planned obsolescence. **The Quarterly Journal of Economics**, Cambridge, MA, v. 101, n. 4, p. 729-749, Nov. 1986. DOI: https://doi.org/10.2307/1884176.
 
-BUSINESS & HUMAN RIGHTS RESOURCE CENTRE. **DuPont lawsuits (re PFOA pollution in USA)**. [S. l.]: BHRRC, [2020?]. Disponível em: https://www.business-humanrights.org/en/latest-news/dupont-lawsuits-re-pfoa-pollution-in-usa/. Acesso em: 10 out. 2026.
+BUSINESS & HUMAN RIGHTS RESOURCE CENTRE. **DuPont lawsuits (re PFOA pollution in USA)**. *[S.\ l.]*: BHRRC, [2020?]. Disponível em: https://www.business-humanrights.org/en/latest-news/dupont-lawsuits-re-pfoa-pollution-in-usa/. Acesso em: 10 out. 2026.
 
-C8 SCIENCE PANEL. **C8 Science Panel newsletter** [n. 8]. [S. l.]: C8 Science Panel, May 2012. Disponível em: https://www.c8sciencepanel.org/newsletter8.html. Acesso em: 10 out. 2026.
+C8 SCIENCE PANEL. **C8 Science Panel newsletter** [n. 8]. *[S.\ l.]*: C8 Science Panel, May 2012. Disponível em: https://www.c8sciencepanel.org/newsletter8.html. Acesso em: 10 out. 2026.
 
-CANIS, B. et al. **Volkswagen, defeat devices, and the Clean Air Act**: frequently asked questions. Washington, DC: Congressional Research Service, 1 Sept. 2016. (CRS Report, R44372). Disponível em: https://www.everycrsreport.com/reports/R44372.html. Acesso em: 10 out. 2026.
+CANIS, B. *et\ al.* **Volkswagen, defeat devices, and the Clean Air Act**: frequently asked questions. Washington, DC: Congressional Research Service, 1 Sept. 2016. (CRS Report, R44372). Disponível em: https://www.everycrsreport.com/reports/R44372.html. Acesso em: 10 out. 2026.
 
 CAROLINA DO NORTE (Estado). Department of Justice. **Attorney General Josh Stein announces \$113 million settlement with Apple over iPhone throttling**. Raleigh, 18 Nov. 2020. Disponível em: https://ncdoj.gov/attorney-general-josh-stein-announces-113-million-settlement-with-apple-over-iphone-throttling/. Acesso em: 10 out. 2026.
 
-CHEN, L.; ZAHARIA, M.; ZOU, J. **How is ChatGPT's behavior changing over time?** [S. l.]: arXiv, 2023. Preprint arXiv:2307.09009, v. 3. Dados disponíveis em: https://github.com/lchen001/LLMDrift. Disponível em: https://arxiv.org/abs/2307.09009. Acesso em: 10 out. 2026.
+CHEN, L.; ZAHARIA, M.; ZOU, J. **How is ChatGPT's behavior changing over time?** *[S.\ l.]*: arXiv, 2023. Preprint arXiv:2307.09009, v. 3. Dados disponíveis em: https://github.com/lchen001/LLMDrift. Disponível em: https://arxiv.org/abs/2307.09009. Acesso em: 10 out. 2026.
 
-CHEN, L. et al. **ODIN**: disentangled reward mitigates hacking in RLHF. [S. l.]: arXiv, 2024. Preprint arXiv:2402.07319. Disponível em: https://arxiv.org/abs/2402.07319. Acesso em: 10 out. 2026.
+CHEN, L. *et\ al.* **ODIN**: disentangled reward mitigates hacking in RLHF. *[S.\ l.]*: arXiv, 2024. Preprint arXiv:2402.07319. Disponível em: https://arxiv.org/abs/2402.07319. Acesso em: 10 out. 2026.
 
-COTCHETT, PITRE & MCCARTHY. **CPM helps Apple iPhone consumers impacted by software throttling reach historic settlement**. [S. l.], 28 Feb. 2020. Disponível em: https://www.cpmlegal.com/newsroom/news/Historic-Settlement-Reached-for-Apple-iPhone-Consumers-Impacted-by-Software-Throttling. Acesso em: 10 out. 2026.
+COTCHETT, PITRE & MCCARTHY. **CPM helps Apple iPhone consumers impacted by software throttling reach historic settlement**. *[S.\ l.]*, 28 Feb. 2020. Disponível em: https://www.cpmlegal.com/newsroom/news/Historic-Settlement-Reached-for-Apple-iPhone-Consumers-Impacted-by-Software-Throttling. Acesso em: 10 out. 2026.
 
-DOCTOROW, C. Tiktok's enshittification. **Pluralistic**, [S. l.], 21 Jan. 2023. Disponível em: https://pluralistic.net/2023/01/21/potemkin-ai/. Acesso em: 10 out. 2026.
+DOCTOROW, C. Tiktok's enshittification. **Pluralistic**, *[S.\ l.]*, 21 Jan. 2023. Disponível em: https://pluralistic.net/2023/01/21/potemkin-ai/. Acesso em: 10 out. 2026.
 
 ESTADOS UNIDOS. Environmental Protection Agency. **EPA settles PFOA case against DuPont for largest environmental administrative penalty in agency history**. Washington, DC: EPA, 14 Dec. 2005. Disponível em: https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/fdcb2f665cac66bb852570d7005d6665.html. Acesso em: 10 out. 2026.
 
@@ -412,67 +412,67 @@ FRANÇA. Loi nº 2021-1485 du 15 novembre 2021 visant à réduire l'empreinte en
 
 FRANZEN, C. Mystery solved: Anthropic reveals changes to Claude's harnesses and operating instructions likely caused degradation. **VentureBeat**, San Francisco, 23 Apr. 2026. Disponível em: https://venturebeat.com/technology/mystery-solved-anthropic-reveals-changes-to-claudes-harnesses-and-operating-instructions-likely-caused-degradation. Acesso em: 10 out. 2026.
 
-GAMA, J. et al. A survey on concept drift adaptation. **ACM Computing Surveys**, New York, v. 46, n. 4, p. 1-37, 2014. DOI: https://doi.org/10.1145/2523813.
+GAMA, J. *et\ al.* A survey on concept drift adaptation. **ACM Computing Surveys**, New York, v. 46, n. 4, p. 1-37, 2014. DOI: https://doi.org/10.1145/2523813.
 
-GOODHART, C. A. E. Problems of monetary management: the U.K. experience. In: RESERVE BANK OF AUSTRALIA. **Papers in monetary economics**. Sydney: RBA, 1975. v. 1, p. 1-20.
+GOODHART, C. A. E. Problems of monetary management: the U.K. experience. *In*: RESERVE BANK OF AUSTRALIA. **Papers in monetary economics**. Sydney: RBA, 1975. v. 1, p. 1-20.
 
-HALTE À L'OBSOLESCENCE PROGRAMMÉE. **Epson poursuivi pour obsolescence programmée**: une première mondiale. Dossier de presse. [S. l.]: HOP, mai 2026a. Disponível em: https://www.halteobsolescence.org/wp-content/uploads/2026/06/HOP-Epson.pdf. Acesso em: 10 out. 2026.
+HALTE À L'OBSOLESCENCE PROGRAMMÉE. **Epson poursuivi pour obsolescence programmée**: une première mondiale. Dossier de presse. *[S.\ l.]*: HOP, mai 2026a. Disponível em: https://www.halteobsolescence.org/wp-content/uploads/2026/06/HOP-Epson.pdf. Acesso em: 10 out. 2026.
 
-HALTE À L'OBSOLESCENCE PROGRAMMÉE. **Procès contre Epson**: prochain rendez-vous le 25 février 2027. [S. l.]: HOP, 6 juil. 2026b. Disponível em: https://www.halteobsolescence.org/suite-proces-epson-imprimante/. Acesso em: 10 out. 2026.
+HALTE À L'OBSOLESCENCE PROGRAMMÉE. **Procès contre Epson**: prochain rendez-vous le 25 février 2027. *[S.\ l.]*: HOP, 6 juil. 2026b. Disponível em: https://www.halteobsolescence.org/suite-proces-epson-imprimante/. Acesso em: 10 out. 2026.
 
 INTERNATIONAL COUNCIL ON CLEAN TRANSPORTATION. **Dieselgate**: behind the scandal. Washington, DC: ICCT, 2025. Disponível em: https://theicct.org/dieselgate-emissions-scandal/. Acesso em: 10 out. 2026.
 
 KRAJEWSKI, M. The great lightbulb conspiracy. **IEEE Spectrum**, New York, 24 Sept. 2014. Disponível em: https://spectrum.ieee.org/the-great-lightbulb-conspiracy. Acesso em: 10 out. 2026.
 
-KURTIC, E. et al. **"Give me BF16 or give me death"?** Accuracy-performance trade-offs in LLM quantization. [S. l.]: arXiv, 2024. Preprint arXiv:2411.02355. Aceito no ACL 2025. Disponível em: https://arxiv.org/abs/2411.02355. Acesso em: 10 out. 2026.
+KURTIC, E. *et\ al.* **"Give me BF16 or give me death"?** Accuracy-performance trade-offs in LLM quantization. *[S.\ l.]*: arXiv, 2024. Preprint arXiv:2411.02355. Aceito na ACL 2025. Disponível em: https://arxiv.org/abs/2411.02355. Acesso em: 10 out. 2026.
 
 LEC'HVIEN, A. France: une première enquête pour "obsolescence programmée". **La Presse**, Montréal, 28 déc. 2017. Dépêche AFP. Disponível em: https://www.lapresse.ca/affaires/economie/technologie/201712/28/01-5148467-france-une-premiere-enquete-pour-obsolescence-programmee.php. Acesso em: 10 out. 2026.
 
-LI, Z. et al. **Quantization meets reasoning**: exploring LLM low-bit quantization degradation for mathematical reasoning. [S. l.]: arXiv, 2025. Preprint arXiv:2501.03035. Disponível em: https://arxiv.org/abs/2501.03035. Acesso em: 10 out. 2026.
+LI, Z. *et\ al.* **Quantization meets reasoning**: exploring LLM low-bit quantization degradation for mathematical reasoning. *[S.\ l.]*: arXiv, 2025. Preprint arXiv:2501.03035. Disponível em: https://arxiv.org/abs/2501.03035. Acesso em: 10 out. 2026.
 
-MACQUARIE DICTIONARY. **Word of the Year 2024**. [S. l.]: Macquarie Dictionary, 2024. Disponível em: https://www.macquariedictionary.com.au/word-of-the-year/word-of-the-year-2024/. Acesso em: 10 out. 2026.
+MACQUARIE DICTIONARY. **Word of the Year 2024**. *[S.\ l.]*: Macquarie Dictionary, 2024. Disponível em: https://www.macquariedictionary.com.au/word-of-the-year/word-of-the-year-2024/. Acesso em: 10 out. 2026.
 
-MOONSHOT AI. **K2 Vendor Verifier**. [S. l.]: GitHub, 2025. Disponível em: https://github.com/MoonshotAI/K2-Vendor-Verifier. Acesso em: 10 out. 2026.
+MOONSHOT AI. **K2 Vendor Verifier**. *[S.\ l.]*: GitHub, 2025. Disponível em: https://github.com/MoonshotAI/K2-Vendor-Verifier. Acesso em: 10 out. 2026.
 
 MUPPIDI, S. Anthropic lowers gross margin projection as revenue skyrockets. **The Information**, San Francisco, Jan. 2026a. Disponível em: https://www.theinformation.com/articles/anthropic-lowers-profit-margin-projection-revenue-skyrockets. Acesso em: 10 out. 2026.
 
 MUPPIDI, S. Why OpenAI, Anthropic missed their own gross margin forecasts. **The Information**, San Francisco, Feb. 2026b. Newsletter The Dealmaker. Disponível em: https://www.theinformation.com/newsletters/dealmaker/openai-anthropic-missed-gross-margin-forecasts. Acesso em: 10 out. 2026.
 
-NARAYANAN, A.; KAPOOR, S. Is GPT-4 getting worse over time? **AI Snake Oil**, [S. l.], 19 July 2023. Disponível em: https://www.aisnakeoil.com/p/is-gpt-4-getting-worse-over-time. Acesso em: 10 out. 2026.
+NARAYANAN, A.; KAPOOR, S. Is GPT-4 getting worse over time? **AI Snake Oil**, *[S.\ l.]*, 19 July 2023. Disponível em: https://www.aisnakeoil.com/p/is-gpt-4-getting-worse-over-time. Acesso em: 10 out. 2026.
 
 OPENAI. **New embedding models and API updates**. San Francisco: OpenAI, 25 Jan. 2024. Disponível em: https://openai.com/index/new-embedding-models-and-api-updates/. Acesso em: 10 out. 2026.
 
-PARK, R. et al. Disentangling length from quality in direct preference optimization. In: FINDINGS OF THE ASSOCIATION FOR COMPUTATIONAL LINGUISTICS: ACL 2024. Bangkok: Association for Computational Linguistics, 2024. Preprint arXiv:2403.19159. Disponível em: https://arxiv.org/abs/2403.19159. Acesso em: 10 out. 2026.
+PARK, R. *et\ al.* Disentangling length from quality in direct preference optimization. *In*: KU, L.-W.; MARTINS, A.; SRIKUMAR, V. (ed.). **Findings of the Association for Computational Linguistics**: ACL 2024. Bangkok: Association for Computational Linguistics, 2024. p. 4998-5017. DOI: https://doi.org/10.18653/v1/2024.findings-acl.297.
 
-POOLE, J. iPhone performance and battery age. **Geekbench Blog**, [S. l.], 18 Dec. 2017. Disponível em: https://www.geekbench.com/blog/2017/12/iphone-performance-and-battery-age/. Acesso em: 10 out. 2026.
+POOLE, J. iPhone performance and battery age. **Geekbench Blog**, *[S.\ l.]*, 18 Dec. 2017. Disponível em: https://www.geekbench.com/blog/2017/12/iphone-performance-and-battery-age/. Acesso em: 10 out. 2026.
 
-SHARMA, M. et al. **Towards understanding sycophancy in language models**. [S. l.]: arXiv, 2023. Preprint arXiv:2310.13548, v. 4. Disponível em: https://arxiv.org/abs/2310.13548. Acesso em: 10 out. 2026.
+SHARMA, M. *et\ al.* **Towards understanding sycophancy in language models**. *[S.\ l.]*: arXiv, 2023. Preprint arXiv:2310.13548, v. 4. Disponível em: https://arxiv.org/abs/2310.13548. Acesso em: 10 out. 2026.
 
 SIEBERT, H. **Der Kobra-Effekt**: wie man Irrwege der Wirtschaftspolitik vermeidet. Stuttgart: Deutsche Verlags-Anstalt, 2001.
 
-SINGH, S. et al. **The leaderboard illusion**. [S. l.]: arXiv, 2025. Preprint arXiv:2504.20879. Trabalho apresentado na NeurIPS 2025, Datasets and Benchmarks Track. Disponível em: https://arxiv.org/abs/2504.20879. Acesso em: 10 out. 2026.
+SINGH, S. *et\ al.* **The leaderboard illusion**. *[S.\ l.]*: arXiv, 2025. Preprint arXiv:2504.20879. Trabalho apresentado na NeurIPS 2025, Datasets and Benchmarks Track. Disponível em: https://arxiv.org/abs/2504.20879. Acesso em: 10 out. 2026.
 
-SINGHAL, P. et al. **A long way to go**: investigating length correlations in RLHF. [S. l.]: arXiv, 2023. Preprint arXiv:2310.03716. Aceito na COLM 2024. Disponível em: https://arxiv.org/abs/2310.03716. Acesso em: 10 out. 2026.
+SINGHAL, P. *et\ al.* **A long way to go**: investigating length correlations in RLHF. *[S.\ l.]*: arXiv, 2023. Preprint arXiv:2310.03716. Aceito na COLM 2024. Disponível em: https://arxiv.org/abs/2310.03716. Acesso em: 10 out. 2026.
 
-STRATHERN, M. 'Improving ratings': audit in the British university system. **European Review**, [S. l.], v. 5, n. 3, p. 305-321, 1997.
+STRATHERN, M. 'Improving ratings': audit in the British university system. **European Review**, *[S.\ l.]*, v. 5, n. 3, p. 305-321, 1997.
 
-SUN, G. et al. **CoIn**: counting the invisible reasoning tokens in commercial opaque LLM APIs. [S. l.]: arXiv, 2025a. Preprint arXiv:2505.13778. Disponível em: https://arxiv.org/abs/2505.13778. Acesso em: 10 out. 2026.
+SUN, G. *et\ al.* **CoIn**: counting the invisible reasoning tokens in commercial opaque LLM APIs. *[S.\ l.]*: arXiv, 2025a. Preprint arXiv:2505.13778. Disponível em: https://arxiv.org/abs/2505.13778. Acesso em: 10 out. 2026.
 
-SUN, G. et al. **Invisible tokens, visible bills**: the urgent need to audit hidden operations in opaque LLM services. [S. l.]: arXiv, 2025b. Preprint arXiv:2505.18471. Disponível em: https://arxiv.org/abs/2505.18471. Acesso em: 10 out. 2026.
+SUN, G. *et\ al.* **Invisible tokens, visible bills**: the urgent need to audit hidden operations in opaque LLM services. *[S.\ l.]*: arXiv, 2025b. Preprint arXiv:2505.18471. Disponível em: https://arxiv.org/abs/2505.18471. Acesso em: 10 out. 2026.
 
-TANGERMANN, V. OpenAI issues patch to fix GPT-4's alleged laziness. **Futurism**, [S. l.], 27 Jan. 2024. Disponível em: https://futurism.com/the-byte/openai-patch-fix-gpt4-laziness. Acesso em: 10 out. 2026.
+TANGERMANN, V. OpenAI issues patch to fix GPT-4's alleged laziness. **Futurism**, *[S.\ l.]*, 27 Jan. 2024. Disponível em: https://futurism.com/the-byte/openai-patch-fix-gpt4-laziness. Acesso em: 10 out. 2026.
 
-THOMPSON, G. J. et al. **In-use emissions testing of light-duty diesel vehicles in the United States**: final report. Morgantown: West Virginia University, Center for Alternative Fuels, Engines & Emissions, 15 May 2014. Relatório preparado para o International Council on Clean Transportation. Disponível em: https://theicct.org/wp-content/uploads/2021/06/WVU_LDDV_in-use_ICCT_Report_Final_may2014.pdf. Acesso em: 10 out. 2026.
+THOMPSON, G. J. *et\ al.* **In-use emissions testing of light-duty diesel vehicles in the United States**: final report. Morgantown: West Virginia University, Center for Alternative Fuels, Engines & Emissions, 15 May 2014. Relatório preparado para o International Council on Clean Transportation. Disponível em: https://theicct.org/wp-content/uploads/2021/06/WVU_LDDV_in-use_ICCT_Report_Final_may2014.pdf. Acesso em: 10 out. 2026.
 
-TIGER BROKERS. **AI profitability proves elusive**: Anthropic cuts gross margin guidance as 12-fold revenue surge offset by 23% spike in inference costs. [S. l.]: Tiger Brokers, 22 Jan. 2026. Disponível em: https://www.itiger.com/news/1113108294. Acesso em: 10 out. 2026.
+TIGER BROKERS. **AI profitability proves elusive**: Anthropic cuts gross margin guidance as 12-fold revenue surge offset by 23% spike in inference costs. *[S.\ l.]*: Tiger Brokers, 22 Jan. 2026. Disponível em: https://www.itiger.com/news/1113108294. Acesso em: 10 out. 2026.
 
 UNE AMENDE de 25 millions d'euros infligée à Apple pour pratique commerciale trompeuse en France. **Le Monde**, Paris, 7 févr. 2020. Disponível em: https://www.lemonde.fr/pixels/article/2020/02/07/une-amende-de-25-millions-d-euros-infligee-a-apple-pour-pratique-commerciale-trompeuse-en-france_6028758_4408996.html. Acesso em: 10 out. 2026.
 
-VASWANI, A. et al. **Attention is all you need**. [S. l.]: arXiv, 2017. Preprint arXiv:1706.03762. Disponível em: https://arxiv.org/abs/1706.03762. Acesso em: 10 out. 2026.
+VASWANI, A. *et\ al.* **Attention is all you need**. *[S.\ l.]*: arXiv, 2017. Preprint arXiv:1706.03762. Disponível em: https://arxiv.org/abs/1706.03762. Acesso em: 10 out. 2026.
 
-WANG, Z. et al. **Predictive auditing of hidden tokens in LLM APIs via reasoning length estimation**. [S. l.]: arXiv, 2025. Preprint arXiv:2508.00912. Disponível em: https://arxiv.org/abs/2508.00912. Acesso em: 10 out. 2026.
+WANG, Z. *et\ al.* **Predictive auditing of hidden tokens in LLM APIs via reasoning length estimation**. *[S.\ l.]*: arXiv, 2025. Preprint arXiv:2508.00912. Disponível em: https://arxiv.org/abs/2508.00912. Acesso em: 10 out. 2026.
 
-ZHAO, K. et al. **Bias fitting to mitigate length bias of reward model in RLHF**. [S. l.]: arXiv, 2025. Preprint arXiv:2505.12843. Aceito no ACL 2026. Disponível em: https://arxiv.org/abs/2505.12843. Acesso em: 10 out. 2026.
+ZHAO, K. *et\ al.* **Bias fitting to mitigate length bias of reward model in RLHF**. *[S.\ l.]*: arXiv, 2025. Preprint arXiv:2505.12843. Aceito na ACL 2026. Disponível em: https://arxiv.org/abs/2505.12843. Acesso em: 10 out. 2026.
 :::
 
 # Apêndice A - O debate que originou o ensaio
@@ -483,16 +483,16 @@ Resumo das transcrições do autor (setembro de 2026). Não é fonte externa; se
 
 | Ponto levantado pelo usuário | Resultado no debate | Onde está no ensaio |
 |------------------------------|---------------------------------------------|---------------|
-| Bulow, efeito cobra, dark patterns, Phoebus, Batterygate e impressoras são reais | Concedido | 3 e 4 |
-| Na assinatura, cada erro gera receita | Não concedido: na assinatura o erro é custo do fornecedor. Concedido na API, onde o token é receita, e concedido que o limite empurra para upgrade | 3.1 e 7.1 |
+| Bulow, efeito cobra, *dark patterns*, Phoebus, Batterygate e impressoras são reais | Concedido | 3 e 4 |
+| Na assinatura, cada erro gera receita | Não concedido: na assinatura o erro é custo do fornecedor. Concedido na API, onde o token é receita, e concedido que o limite empurra para *upgrade* | 3.1 e 7.1 |
 | Oligopólio enfraquece a ameaça de cancelamento | Concedido | 7.2 |
-| Enshittification | Concedido como conceito | 3.6 |
+| *Enshittification* | Concedido como conceito | 3.6 |
 | Quantização, roteamento e contexto encurtado barateiam e pioram | Concedido; apontado pelo próprio assistente como a versão mais defensável da suspeita | 5 |
 | "Stanford e Berkeley provaram degradação" | Parcial: mudança de comportamento, não intenção | 7.4, item 2 |
 | "Model drift" | Corrigido: o termo designa outra coisa | 7.4, item 4 |
 | "Attention heads limitados para baratear" | Corrigido: tecnicamente falso | 5.3 e 7.4, item 1 |
 | "A indústria rejeita auditoria" | O assistente citou avaliações de segurança; o usuário rebateu que elas medem risco catastrófico, não precisão; o assistente aceitou a correção | 6.3.2 e 7.4, item 3 |
-| Trackers externos | Divergência final: mostram que caiu, não por quê | 6.3.2 |
+| *Trackers* externos | Divergência final: mostram que caiu, não por quê | 6.3.2 |
 | Opacidade protege margem | Concedido como um dos motivos, ao lado de segredo comercial | 6.1 e 8 |
 | Intenção provada | Não concedido: "motivo forte para investigar" | 7.3 e 11 |
 | Ônus da prova invertido | Não concedido como regra de debate; reconhecido como válido em contexto regulatório | 7.3 e 10 |
@@ -507,8 +507,9 @@ Este texto consolida material de origens distintas. A honestidade sobre a proced
 
 - Em 10/10/2026, todas as fontes online foram reabertas para conferir autoria, título, data e endereço, e cada referência traz a data de acesso correspondente. A lei brasileira foi consultada em 04/10/2026.
 - Nessa conferência foram corrigidos pontos herdados da versão 1.0: o acordo de 113 milhões de dólares foi firmado com 33 estados e o Distrito de Colúmbia, e não com 34 estados (fato 14); a menção expressa a técnicas de software na lei francesa entrou em 2021, e não em 2015 (fato 17); a sanção francesa de 2020 foi uma transação penal por prática comercial enganosa por omissão, sem condenação por obsolescência programada (fato 12). Também foi detalhada a composição do acordo de 2005 com a agência ambiental americana (fato 21) e precisada a data de abertura da investigação contra o fabricante de impressoras (fato 15).
-- Dos quatro trabalhos acrescentados na v2.0 (Sharma et al., 2023; Chen et al., 2024; Park et al., 2024; Wang et al., 2025) foi lido o texto integral. Dos demais trabalhos acadêmicos foram reconferidos resumo e metadados. Obras clássicas (Akerlof, Bulow, Goodhart, Siebert, Brignull, Strathern) tiveram os dados bibliográficos conferidos, sem nova leitura do texto integral.
-- As reportagens do The Information estão atrás de paywall: título e autoria foram conferidos nos metadados das páginas, e os números citados, em resumo independente da mesma apuração (Tiger Brokers, 2026). O dia exato da primeira reportagem (21 ou 22 de janeiro de 2026) não pôde ser confirmado. Os dados vêm de fontes anônimas com conhecimento das finanças da empresa, e não de demonstração financeira auditada. Devem ser tratados como tal.
+- Na revisão final, em 12/10/2026, afirmações gerais sobre os cinco precedentes e os três episódios foram ajustadas para não estender a todos o que vale só para alguns: o caso das impressoras ainda aguarda julgamento, e apenas os relatórios de 2025 e 2026 registram que a instrumentação interna do fornecedor não detectou o problema.
+- Dos quatro trabalhos acrescentados na v2.0 (Sharma *et\ al.*, 2023; Chen *et\ al.*, 2024; Park *et\ al.*, 2024; Wang *et\ al.*, 2025) foi lido o texto integral. Dos demais trabalhos acadêmicos foram conferidos novamente o resumo e os metadados. Obras clássicas (Akerlof, Bulow, Goodhart, Siebert, Brignull, Strathern) tiveram os dados bibliográficos conferidos, sem nova leitura do texto integral.
+- As reportagens do The Information estão atrás de *paywall*: título e autoria foram conferidos nos metadados das páginas, e os números citados, em resumo independente da mesma apuração (Tiger Brokers, 2026). O dia exato da primeira reportagem (21 ou 22 de janeiro de 2026) não pôde ser confirmado. Os dados vêm de fontes anônimas com conhecimento das finanças da empresa, e não de demonstração financeira auditada. Devem ser tratados como tal.
 - Os valores do gráfico de esforço citados na seção 6.2 são leitura visual aproximada do gráfico publicado na versão original do relatório, com gráficos e telas, conferida em setembro de 2026. Não são números tabelados pelo fornecedor, e a margem de leitura é de cerca de um ponto percentual para cima ou para baixo.
 - A análise independente de sessões citada na seção 6.4 foi publicada pela própria autora em repositório público; nem todas as suas conclusões foram confirmadas pelo fornecedor.
 - O Apêndice A e a descrição dos debates na seção 6.6 resumem transcrições do próprio autor. Não são fonte externa e não sustentam nenhum fato do ensaio; ilustram o argumento.

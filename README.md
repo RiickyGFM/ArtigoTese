@@ -4,7 +4,7 @@
 
 | Arquivo | Papel |
 |---|---|
-| `Da_lampada_ao_token_v2_CONSOLIDADO.pdf` | Versão final para leitura e envio (v2.2) |
+| `Da_lampada_ao_token_v2_CONSOLIDADO.pdf` | Versão final para leitura e envio (v2.3) |
 | `Da_lampada_ao_token_v2_CONSOLIDADO.docx` | Mesma versão para editar no Word / Google Docs |
 | `Da_lampada_ao_token_v2_CONSOLIDADO.md` | Mesmo texto, fonte editável (o .docx é gerado daqui) |
 | `Da_lampada_ao_token_REGISTRO_DE_FATOS_v2.md` | 61 fatos com fonte, correções e itens descartados |
